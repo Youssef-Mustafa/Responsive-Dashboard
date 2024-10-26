@@ -3,9 +3,15 @@ import 'package:responsive_dashboard/models/all_expenses_item_model.dart';
 import 'package:responsive_dashboard/utlis/app_images.dart';
 import 'package:responsive_dashboard/widgets/expenses_item.dart';
 
-class ExpensesItemsListView extends StatelessWidget {
+class ExpensesItemsListView extends StatefulWidget {
   const ExpensesItemsListView({super.key});
-  static const List<AllExpensesItemModel> items = [
+
+  @override
+  State<ExpensesItemsListView> createState() => _ExpensesItemsListViewState();
+}
+
+class _ExpensesItemsListViewState extends State<ExpensesItemsListView> {
+  final List<AllExpensesItemModel> items = const [
     AllExpensesItemModel(
         title: 'Balance',
         image: Assets.imagesBalance,
@@ -22,6 +28,7 @@ class ExpensesItemsListView extends StatelessWidget {
         date: 'April 2022',
         price: '19.129'),
   ];
+  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,14 +38,38 @@ class ExpensesItemsListView extends StatelessWidget {
       var item = e.value;
       if (index == 1) {
         return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: (16.0)),
-            child: ExpensesItem(allExpensesItemModel: item),
+          child: GestureDetector(
+            onTap: () {
+              updateIndex(index);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: (16.0)),
+              child: ExpensesItem(
+                allExpensesItemModel: item,
+                isActive: activeIndex == index,
+              ),
+            ),
           ),
         );
       } else {
-        return Expanded(child: ExpensesItem(allExpensesItemModel: item));
+        return Expanded(
+          child: GestureDetector(
+            onTap: () {
+              updateIndex(index);
+            },
+            child: ExpensesItem(
+              allExpensesItemModel: item,
+              isActive: activeIndex == index,
+            ),
+          ),
+        );
       }
     }).toList());
+  }
+
+  void updateIndex(int index) {
+    setState(() {
+      activeIndex = index;
+    });
   }
 }

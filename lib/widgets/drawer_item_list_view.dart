@@ -21,6 +21,7 @@ class _DrawerItemListViewState extends State<DrawerItemListView> {
     DrawerItemModel(title: 'Wallet Account', image: Assets.imagesWalletAccount),
     DrawerItemModel(title: 'My Investments', image: Assets.imagesMyInvestments),
   ];
+
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
@@ -36,9 +37,19 @@ class _DrawerItemListViewState extends State<DrawerItemListView> {
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0),
-            child: DrawerItem(
-              drawerItemModel: drawerItems[index],
-              isActive: activeIndex == index,
+            child: AnimatedCrossFade(
+              duration: const Duration(milliseconds: 300),
+              firstChild: DrawerItem(
+                drawerItemModel: drawerItems[index],
+                isActive: false,
+              ),
+              secondChild: DrawerItem(
+                drawerItemModel: drawerItems[index],
+                isActive: true,
+              ),
+              crossFadeState: activeIndex == index
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
             ),
           ),
         );
