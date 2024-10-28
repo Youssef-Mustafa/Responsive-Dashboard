@@ -18,7 +18,10 @@ class DesktopLayout extends StatelessWidget {
         ),
         Expanded(
           flex: 2,
-          child: AllExpenseAndQuickInvoiceSection(),
+          child: Padding(
+            padding: EdgeInsets.only(top: 40.0),
+            child: AllExpenseAndQuickInvoiceSection(),
+          ),
         ),
         SizedBox(width: 24),
         Expanded(
