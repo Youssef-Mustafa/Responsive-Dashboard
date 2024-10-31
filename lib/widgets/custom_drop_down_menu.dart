@@ -24,7 +24,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
           color: Color(0xFF064060),
         ),
       ),
-      style: AppStyles.styleMedium16,
+      style: AppStyles.styleMedium16(context),
       dropdownColor: Colors.white,
       underline: Container(),
       onChanged: (String? newValue) {

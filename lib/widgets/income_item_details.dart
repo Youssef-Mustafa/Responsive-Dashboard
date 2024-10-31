@@ -14,8 +14,10 @@ class IncomItemDetails extends StatelessWidget {
         decoration: ShapeDecoration(
             shape: const CircleBorder(), color: itemDetailModel.color),
       ),
-      title: Text(itemDetailModel.title, style: AppStyles.styleRegular16),
-      trailing: Text(itemDetailModel.trailling, style: AppStyles.styleMedium16),
+      title:
+          Text(itemDetailModel.title, style: AppStyles.styleRegular16(context)),
+      trailing: Text(itemDetailModel.trailling,
+          style: AppStyles.styleMedium16(context)),
     );
   }
 }

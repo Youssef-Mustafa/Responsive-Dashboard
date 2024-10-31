@@ -32,39 +32,64 @@ class _ExpensesItemsListViewState extends State<ExpensesItemsListView> {
   @override
   Widget build(BuildContext context) {
     return Row(
-        // children: items.map((e) => Expanded(child: ExpensesItem(allExpensesItemModel: e))).toList(),
-        children: items.asMap().entries.map((e) {
-      int index = e.key;
-      var item = e.value;
-      if (index == 1) {
-        return Expanded(
+      children: [
+        Expanded(
           child: GestureDetector(
             onTap: () {
-              updateIndex(index);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: (16.0)),
-              child: ExpensesItem(
-                allExpensesItemModel: item,
-                isActive: activeIndex == index,
-              ),
-            ),
-          ),
-        );
-      } else {
-        return Expanded(
-          child: GestureDetector(
-            onTap: () {
-              updateIndex(index);
+              updateIndex(0);
             },
             child: ExpensesItem(
-              allExpensesItemModel: item,
-              isActive: activeIndex == index,
+              allExpensesItemModel: items[0],
+              isActive: activeIndex == 0,
             ),
           ),
-        );
-      }
-    }).toList());
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: GestureDetector(
+            onTap: () {
+              updateIndex(1);
+            },
+            child: ExpensesItem(
+              allExpensesItemModel: items[1],
+              isActive: activeIndex == 1,
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: GestureDetector(
+            onTap: () {
+              updateIndex(2);
+            },
+            child: ExpensesItem(
+              allExpensesItemModel: items[2],
+              isActive: activeIndex == 2,
+            ),
+          ),
+        )
+      ],
+    );
+    // return Row(
+    //     // children: items.map((e) => Expanded(child: ExpensesItem(allExpensesItemModel: e))).toList(),
+    //     children: items.asMap().entries.map((e) {
+    //   int index = e.key;
+    //   var item = e.value;
+    //   return Expanded(
+    //     child: GestureDetector(
+    //       onTap: () {
+    //         updateIndex(index);
+    //       },
+    //       child: Padding(
+    //         padding: EdgeInsets.symmetric(horizontal: index == 1 ? (16.0) : 0),
+    //         child: ExpensesItem(
+    //           allExpensesItemModel: item,
+    //           isActive: activeIndex == index,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }).toList());
   }
 
   void updateIndex(int index) {
